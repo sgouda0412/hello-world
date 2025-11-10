@@ -1,9 +1,3 @@
-
-PS D:\CodingJan2025Onwardsc\CPPForStudents\.github>
-Add the template content
-
-Here is one possible template content.
-
 # Pull Request
 
 ## Description
