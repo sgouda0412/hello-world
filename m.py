@@ -1,2 +1,2 @@
 print("hello gitt!!!")
-#dbt bash set with siowflake
+print("hello world!!")
