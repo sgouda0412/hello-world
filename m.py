@@ -1,2 +1,2 @@
-print("hello git!!!")
+print("hello gitt!!!")
 #dbt bash set with siowflake
