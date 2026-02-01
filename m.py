@@ -6,7 +6,7 @@ class T:
         self.x = x
 
     def _x(self):
-        return "hello"
+        return "hello world"
 
 
 def main():
