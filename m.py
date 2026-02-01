@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 
-from numpy import array
-import os
-import sys
-from collections import Counter, defaultdict, deque, UserDict
-from datetime import datetime, timedelta, timezone
 
 class T:
     def __init__(self, x):
