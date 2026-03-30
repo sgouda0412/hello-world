@@ -13,7 +13,7 @@ def main():
     """Main function to demonstrate the T class."""
     t = T(1)
     print(t._x())
-    return "Hello"
+    return "Helloo"
 
 
 if __name__ == "__main__":
