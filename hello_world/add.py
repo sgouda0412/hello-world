@@ -12,7 +12,7 @@ from asyncio import run
 import argparse
 from enum import Enum
 import json
-
+import signal
 class Color(Enum):
     pass
 
