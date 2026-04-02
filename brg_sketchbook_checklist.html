@@ -1,0 +1,388 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+.book{
+  background:#faf6ef;
+  border-radius:4px 12px 12px 4px;
+  border-left:18px solid #c8a97e;
+  border-top:1.5px solid #d4c4a8;
+  border-right:1.5px solid #d4c4a8;
+  border-bottom:1.5px solid #d4c4a8;
+  padding:0;
+  overflow:hidden;
+}
+
+.book-header{
+  background:#faf6ef;
+  padding:20px 24px 12px;
+  border-bottom:2px solid #e8dcc8;
+}
+
+.book-title{
+  font-family:'Caveat',cursive;
+  font-size:28px;
+  font-weight:700;
+  color:#3a2e22;
+  letter-spacing:0.5px;
+  line-height:1;
+}
+
+.book-subtitle{
+  font-family:'Caveat',cursive;
+  font-size:15px;
+  color:#8a7560;
+  margin-top:2px;
+}
+
+.progress-wrap{
+  margin-top:10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.progress-track{
+  flex:1;
+  height:8px;
+  background:#e8dcc8;
+  border-radius:4px;
+  overflow:hidden;
+}
+
+.progress-ink{
+  height:100%;
+  background:#4a7c59;
+  border-radius:4px;
+  transition:width .4s ease;
+}
+
+.progress-txt{
+  font-family:'Caveat',cursive;
+  font-size:14px;
+  color:#8a7560;
+  min-width:70px;
+}
+
+.tabs{
+  display:flex;
+  gap:0;
+  padding:0 24px;
+  background:#f0e8d8;
+  border-bottom:1.5px solid #d4c4a8;
+  overflow-x:auto;
+}
+
+.tab{
+  font-family:'Caveat',cursive;
+  font-size:14px;
+  padding:8px 14px 6px;
+  cursor:pointer;
+  color:#8a7560;
+  border-bottom:3px solid transparent;
+  white-space:nowrap;
+  transition:all .15s;
+  background:transparent;
+  border-top:none;
+  border-left:none;
+  border-right:none;
+}
+
+.tab.active{
+  color:#3a2e22;
+  border-bottom-color:#4a7c59;
+  font-weight:700;
+}
+
+.tab:hover:not(.active){color:#5a4a38;}
+
+.pages{
+  padding:0 24px 24px;
+}
+
+.section{
+  margin-top:20px;
+}
+
+.section-label{
+  font-family:'Caveat',cursive;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  padding:3px 10px;
+  border-radius:3px;
+  display:inline-block;
+  margin-bottom:10px;
+}
+
+.ruled-item{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:9px 0 9px 4px;
+  border-bottom:1px solid #e2d8c8;
+  cursor:pointer;
+  transition:background .1s;
+  border-radius:2px;
+}
+
+.ruled-item:hover{background:rgba(74,124,89,0.05);}
+.ruled-item.done{background:rgba(74,124,89,0.06);}
+.ruled-item.hidden{display:none;}
+
+.cb{
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  border:1.5px solid #c8b89a;
+  flex-shrink:0;
+  margin-top:1px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all .2s;
+  background:#faf6ef;
+}
+
+.ruled-item.done .cb{
+  background:#4a7c59;
+  border-color:#4a7c59;
+}
+
+.check-mark{
+  display:none;
+  width:10px;
+  height:10px;
+}
+.ruled-item.done .check-mark{display:block;}
+
+.q-num{
+  font-family:'Caveat',cursive;
+  font-size:12px;
+  color:#b8a88a;
+  min-width:22px;
+  margin-top:2px;
+  flex-shrink:0;
+}
+
+.q-txt{
+  font-family:'Caveat',cursive;
+  font-size:16px;
+  color:#3a2e22;
+  line-height:1.45;
+}
+
+.ruled-item.done .q-txt{
+  color:#4a7c59;
+  text-decoration:line-through;
+  text-decoration-color:#4a7c5966;
+}
+
+.spine-dots{
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-evenly;
+  pointer-events:none;
+}
+
+.dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#a08060;
+  opacity:0.5;
+}
+
+.book-wrap{
+  position:relative;
+}
+</style>
+
+<div class="book-wrap">
+<div class="book">
+
+<div class="book-header">
+  <div class="book-title">Data Engineering BRG</div>
+  <div class="book-subtitle">Business Requirements Gathering — 50 Questions</div>
+  <div class="progress-wrap">
+    <div class="progress-track"><div class="progress-ink" id="ink" style="width:0%"></div></div>
+    <div class="progress-txt" id="ptxt">0 / 50 done</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showCat('all',this)">All</button>
+  <button class="tab" onclick="showCat('business',this)">Business</button>
+  <button class="tab" onclick="showCat('sources',this)">Data sources</button>
+  <button class="tab" onclick="showCat('quality',this)">Quality & SLA</button>
+  <button class="tab" onclick="showCat('governance',this)">Governance</button>
+  <button class="tab" onclick="showCat('technical',this)">Technical</button>
+  <button class="tab" onclick="showCat('stakeholders',this)">Stakeholders</button>
+</div>
+
+<div class="pages" id="pages"></div>
+</div>
+</div>
+
+<script>
+const data=[
+  {cat:'business',label:'Business goals',color:'#e8d5a3',text:'#7a5c1e',questions:[
+    'What business decision or outcome will this data directly enable?',
+    'What does success look like in 6 months for this initiative?',
+    'Which KPIs or metrics are non-negotiable for this project?',
+    'What is the estimated cost or risk of incorrect or delayed data?',
+    'Are there competing definitions of any core metric (e.g. revenue, users)?',
+    'What reports or dashboards currently exist, and what gaps do they have?',
+    'Is there any existing data project this should integrate with or replace?',
+    'What is the budget allocated for this data engineering effort?',
+    'Are there seasonal or cyclical patterns that affect data volume or urgency?',
+    'What would cause the business to stop trusting this data?',
+  ]},
+  {cat:'sources',label:'Data sources',color:'#c8e0d0',text:'#2a6040',questions:[
+    'What are the authoritative source systems for each data domain?',
+    'Does each source system expose an API, database connection, or file export?',
+    'Are there rate limits, export quotas, or connection restrictions on sources?',
+    'How far back does historical data go in each source system?',
+    'How frequently does the source schema change, and how are changes communicated?',
+    'Does the source system use soft deletes, hard deletes, or neither?',
+    'Are there upstream systems feeding into the source we are integrating?',
+    'Is there business logic embedded in the application layer, not the database?',
+    'Are there any known data quality issues already present in the source?',
+    'Who is the technical owner of each source system and how do we contact them?',
+  ]},
+  {cat:'quality',label:'Quality & SLA',color:'#d8e8f8',text:'#1a4a7a',questions:[
+    'What is the acceptable latency — real-time, hourly, or daily?',
+    'What is the tolerable error or null rate for critical fields?',
+    'How should duplicate records be detected and handled?',
+    'What is the SLA for pipeline availability (e.g. 99.5% of runs succeed)?',
+    'How should the pipeline behave when a source system is unavailable?',
+    'Who is responsible for validating data quality before it is trusted?',
+    'Are there existing data quality checks or tests that should be preserved?',
+    'What alerting is expected when data quality thresholds are breached?',
+    'How long is an acceptable backfill window if a pipeline fails?',
+    'Are there time zone, currency, or unit conversion requirements?',
+  ]},
+  {cat:'governance',label:'Governance',color:'#f0d8d8',text:'#7a2a2a',questions:[
+    'Which fields contain personally identifiable information (PII)?',
+    'What data masking or anonymization rules apply to sensitive fields?',
+    'What are data retention periods for raw, intermediate, and final datasets?',
+    'Are there regulatory frameworks that apply — GDPR, HIPAA, DPDP, SOC 2?',
+    'Are there regional data residency requirements (data must stay in-country)?',
+    'Who has access to raw data versus transformed or aggregated data?',
+    'Is there an existing data catalog or governance tool to integrate with?',
+    'How should data lineage be tracked and documented?',
+    'Is there a formal data classification policy (public, internal, restricted)?',
+    'Who approves access requests to the data warehouse or lake?',
+  ]},
+  {cat:'technical',label:'Technical constraints',color:'#e8d8f0',text:'#4a2a7a',questions:[
+    'What is the current or target data platform (Snowflake, BigQuery, Databricks)?',
+    'Is there an orchestration tool in use — Airflow, Prefect, dbt Cloud?',
+    'What transformation framework is preferred or mandated (dbt, Spark, SQL)?',
+    'Are there infrastructure constraints such as cloud lock-in or cost ceilings?',
+    'How is CI/CD handled for data pipelines in the current environment?',
+    'Are there existing data contracts or schemas downstream consumers depend on?',
+  ]},
+  {cat:'stakeholders',label:'Stakeholders',color:'#fce8c8',text:'#7a4a10',questions:[
+    'Who has final sign-off authority on requirements and acceptance criteria?',
+    'Who is the primary point of contact for each source system team?',
+    'Who are the end consumers — analysts, data scientists, executives, APIs?',
+    'Is there a data steward or domain expert who owns the metric definitions?',
+    'Who should be notified when a pipeline fails or data quality drops?',
+    'Who is responsible for on-call support once pipelines go to production?',
+    'Are there external vendors or partners whose data we are ingesting?',
+    'Who reviews and approves the final Business Requirements Document?',
+    'Is there a project manager or delivery lead coordinating across teams?',
+    'Who owns the data dictionary and keeps it current post-launch?',
+  ]},
+];
+
+const state={};
+let globalNum=1;
+let currentCat='all';
+
+function buildPages(){
+  const pages=document.getElementById('pages');
+  pages.innerHTML='';
+  globalNum=1;
+  data.forEach(sec=>{
+    const secDiv=document.createElement('div');
+    secDiv.className='section';
+    secDiv.dataset.cat=sec.cat;
+
+    const lbl=document.createElement('div');
+    lbl.className='section-label';
+    lbl.style.background=sec.color;
+    lbl.style.color=sec.text;
+    lbl.textContent=sec.label;
+    secDiv.appendChild(lbl);
+
+    sec.questions.forEach(q=>{
+      const idx=globalNum++;
+      if(!state[idx])state[idx]=false;
+      const row=document.createElement('div');
+      row.className='ruled-item'+(state[idx]?' done':'');
+      row.dataset.cat=sec.cat;
+      row.dataset.idx=idx;
+      row.innerHTML=`
+        <div class="cb">
+          <svg class="check-mark" viewBox="0 0 10 10" fill="none">
+            <path d="M1.5 5L4 7.5L8.5 2.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="q-num">${idx}.</span>
+        <span class="q-txt">${q}</span>`;
+      row.onclick=()=>toggle(idx,row);
+      secDiv.appendChild(row);
+    });
+    pages.appendChild(secDiv);
+  });
+  applyFilter();
+  updateProgress();
+}
+
+function toggle(idx,row){
+  state[idx]=!state[idx];
+  row.classList.toggle('done',state[idx]);
+  updateProgress();
+}
+
+function showCat(cat,btn){
+  currentCat=cat;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilter();
+  updateProgress();
+}
+
+function applyFilter(){
+  document.querySelectorAll('.section').forEach(s=>{
+    s.style.display=(currentCat==='all'||s.dataset.cat===currentCat)?'':'none';
+  });
+  document.querySelectorAll('.ruled-item').forEach(r=>{
+    r.classList.toggle('hidden',currentCat!=='all'&&r.dataset.cat!==currentCat);
+  });
+}
+
+function updateProgress(){
+  const allIdx=Object.keys(state).map(Number);
+  const visible=currentCat==='all'?allIdx:allIdx.filter(i=>{
+    const el=document.querySelector(`.ruled-item[data-idx="${i}"]`);
+    return el&&el.dataset.cat===currentCat;
+  });
+  const done=visible.filter(i=>state[i]).length;
+  const total=visible.length;
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById('ink').style.width=pct+'%';
+  document.getElementById('ptxt').textContent=done+' / '+total+' done';
+}
+
+buildPages();
+</script>
