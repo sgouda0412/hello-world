@@ -14,6 +14,7 @@ from enum import Enum
 import json
 import signal
 from contextlib import contextmanager
+from dataclasses import dataclass
 
 
 class Color(Enum):
