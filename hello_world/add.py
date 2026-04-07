@@ -14,6 +14,8 @@ from enum import Enum
 import json
 import signal
 from contextlib import contextmanager
+
+
 class Color(Enum):
     pass
 
@@ -25,3 +27,15 @@ def main() -> None:
 
 if __name__ == "__main__":
     print(main())
+
+
+class T:
+    def __init__(self, x):
+        self.x = x
+
+    def _x(self):
+        return "hello world"
+
+
+x = T(1)
+print(x._x())
