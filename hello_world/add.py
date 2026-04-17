@@ -15,7 +15,7 @@ import json
 import signal
 from contextlib import contextmanager
 from dataclasses import dataclass
-
+import colorsys
 
 class Color(Enum):
     pass
