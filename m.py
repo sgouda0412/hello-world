@@ -6,7 +6,7 @@ class T:
         self.x = x
 
     def _x(self):
-        return "hello world"
+        return "hello world from python programming!!!!"
 
 
 def main():
@@ -18,3 +18,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
