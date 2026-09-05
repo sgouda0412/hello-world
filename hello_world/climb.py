@@ -1,6 +1,9 @@
 from collections import Counter, ChainMap, defaultdict, deque
 import os
-import sys
+from collections import Counter, ChainMap, defaultdict, deque
+from itertools import accumulate, chain, combinations, combinations_with_replacement, compress
+from functools import partial, cache, reduce, combinations_with_replacement
+
 
 def climb_stairs(n):
     ways = [0] * (n + 1)
