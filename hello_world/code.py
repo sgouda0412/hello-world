@@ -5,6 +5,7 @@ import os
 import sys
 import io
 def main():
+	print("peter is programming!!!")
 	return "Hello World....."
 
 if __name__ == "__main__":
