@@ -4,6 +4,9 @@ from collections import defaultdict
 import os
 import sys
 import io
+import signal
+import platform
+
 def main():
 	print("peter is programming-hello!!!")
 	return "Hello World....."
