@@ -12,6 +12,7 @@ import os
 import sys
 
 def connect_to_snowfalke(**kwargs):
+    print('hello-world-from-oy-world')
     return **kwargs
 
 
